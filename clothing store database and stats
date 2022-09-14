@@ -1,0 +1,29 @@
+-----Create a clothing store database
+
+CREATE TABLE stylish_clothing (id INTEGER PRIMARY KEY, item TEXT, size TEXT,price INTEGER, quantity INTEGER);
+
+INSERT INTO stylish_clothing VALUES (1, "casual_blouse", "S",24,12);
+INSERT INTO stylish_clothing VALUES (2, "casual_blouse","M",25,15);
+INSERT INTO stylish_clothing VALUES (3, "casual_blouse","L",26,8);
+INSERT INTO stylish_clothing VALUES (4, "pants","S",29,24);
+INSERT INTO stylish_clothing VALUES (5, "pants","M",30, 36);
+INSERT INTO stylish_clothing VALUES (6, "pants","L", 31, 18);
+INSERT INTO stylish_clothing VALUES (7, "dress","S",14,8);
+INSERT INTO stylish_clothing VALUES (8, "dress","M",14,12);
+INSERT INTO stylish_clothing VALUES (9, "dress","L",14,6);
+INSERT INTO stylish_clothing VALUES (10, "shorts","S",20,16);
+INSERT INTO stylish_clothing VALUES (11, "shorts","M",22,10);
+INSERT INTO stylish_clothing VALUES (12, "shorts","L",23,3);
+INSERT INTO stylish_clothing VALUES (13, "skirts","S",18,6);
+INSERT INTO stylish_clothing VALUES (14, "skirts","M",20,4);
+INSERT INTO stylish_clothing VALUES (15, "skirts","L",21,7);
+
+-----Display the database ordered by price
+
+SELECT * FROM stylish_clothing ORDER BY price;
+----- Find the the total amount of different items in stock.
+
+SELECT item, SUM (quantity) FROM stylish_clothing GROUP BY item;
+------What is the average cost of a dress
+
+SELECT AVG(price) FROM stylish_clothing WHERE item ='dress';
