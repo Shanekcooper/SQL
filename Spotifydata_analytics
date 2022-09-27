@@ -1,0 +1,46 @@
+-------Determine the avg popularity, danceability, and energy by artist and track. 
+SELECT
+artist_name
+,track_name
+,avg(popularity)
+,avg(danceability)
+,avg(energy)
+FROM BIT_DB.spotifydata
+GROUP BY artist_name, track_name
+
+
+----What is the top 5 artist based on popularity
+SELECT artist_name,popularity
+FROM Spotifydata
+ORDER BY popularity DESC
+LIMIT 5
+
+-----What is the average duration per arist?
+SELECT artist_name, AVG(duration_ms)AS average_duration FROM Spotifydata
+GROUP BY artist_name
+
+
+------How many tracks have a tempo greater that 110.97
+SELECT COUNT(track_id) AS num_track FROM Spotifydata
+WHERE tempo > 110.97
+
+------What's the average danceability for the 10 most popular songs?
+SELECT track_name, AVG(danceability)  FROM Spotifydata
+GROUP BY track_name
+ORDER BY popularity DESC
+LIMIT 10
+
+------All songs by doja cat and bruno mars
+SELECT artist_name,track_name FROM Spotifydata
+WHERE artist_name = 'Doja Cat' OR artist_name = 'Bruno Mars'
+
+-----Put songs into genres. If daneablity is over 0.7 then genre is pop music. If danceability is between 0.6 and 0.7 then genre is R&B music. If dancebility is less than 0.6 then country
+SELECT track_name, artist_name,
+CASE
+  WHEN danceability > 0.7 
+  THEN "pop"
+  WHEN danceability BETWEEN 0.6 AND 0.7
+  THEN "R&B"
+  ELSE "country"
+  END AS Genre
+ FROM Spotifydata
