@@ -74,3 +74,20 @@ CASE
   ELSE "country"
   END AS Genre
  FROM Spotifydata
+ 
+-----calculate the average popularity for the artists in the table. Then, for every artist with an average popularity of 90 or above, you need to show their name, their average popularity, and label them as a “Top Star”.
+------First I create a CTE
+WITH popularity_average_CTE AS (
+SELECT artist_name,
+AVG(popularity) AS average_popularity
+FROM SpotifyData  
+GROUP BY artist_name
+)
+-----Then I select the information FROM the CTE that's needed, and also add a "Top Star" tag.
+
+SELECT  artist_name,
+        average_popularity,
+        'Top Star' AS tag
+FROM popularity_average_CTE
+WHERE average_popularity>=90;
+
