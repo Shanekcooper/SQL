@@ -33,6 +33,32 @@ FROM Customers LEFT JOIN FebSales
 ON Customers.order_id = FebSales.orderID
 WHERE Quantity >2
 
+-----Filter specific dates
+----#1
+SELECT orderdate
+FROM FebSales
+WHERE orderdate between '02/13/19 00:00' AND '02/18/19 00:00'
+
+----#2
+SELECT location
+FROM FebSales 
+WHERE orderdate = '02/18/19 01:35'
+
+---#3
+
+SELECT sum(quantity)
+FROM FebSales 
+WHERE orderdate like '02/18/19%'
+
+-----List all the products sold in Los Angeles in February, and include how many of each were sold.
+
+SELECT product,SUM(quantity) AS amount_sold
+FROM FebSales
+WHERE location  Like "%Los Angeles%"
+GROUP BY product
+ORDER BY amount_sold DESC
+
+
 
 
 
