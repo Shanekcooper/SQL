@@ -19,8 +19,21 @@ GROUP BY candidate_id
 HAVING COUNT (skill) = 3
 Order BY candidate_id;
 
-----Tesla is investigating bottlenecks in their production, and they need your help to extract the relevant data. 
+----Q3Tesla is investigating bottlenecks in their production, and they need your help to extract the relevant data. 
 Write a SQL query that determines which parts have begun the assembly process but are not yet finished.
 SELECT DISTINCT part 
 FROM parts_assembly
 WHERE finish_date IS NULL;
+
+-------Q4 Assume that you are given the table below containing information on viewership by device type (where the three types are laptop, tablet, and phone). 
+Define “mobile” as the sum of tablet and phone viewership numbers. Write a query to compare the viewership on laptops versus mobile devices.
+Output the total viewership for laptop and mobile devices in the format of "laptop_views" and "mobile_views".
+SELECT
+SUM(CASE WHEN device_type = 'laptop' THEN 1 ELSE 0
+END) AS laptop_views,
+SUM (CASE WHEN device_type IN ('tablet','phone')THEN 1 ELSE 0
+END) AS mobile_views
+FROM viewership;
+---------Q5 You are given the tables below containing information on Robinhood trades and users. 
+Write a query to list the top three cities that have the most completed trade orders in descending order.Output the city and number of orders.
+
