@@ -36,4 +36,25 @@ END) AS mobile_views
 FROM viewership;
 ---------Q5 You are given the tables below containing information on Robinhood trades and users. 
 Write a query to list the top three cities that have the most completed trade orders in descending order.Output the city and number of orders.
-
+SELECT users.city, COUNT(order_id) AS total_orders FROM trades
+INNER JOIN users
+ON trades.user_id = users. user_id
+WHERE trades.status = 'Completed'
+GROUP BY users.city
+Order BY total_orders DESC
+LIMIT 3;
+-------Q6 Assume you are given the table below that shows job postings for all companies on the LinkedIn platform. 
+Write a query to get the number of companies that have posted duplicate job listing.
+SELECT COUNT(DISTINCT company_id) AS co_w_duplicate_jobs
+FROM (
+  SELECT 
+    company_id, 
+    title, 
+    description, 
+    COUNT(job_id) AS job_count
+  FROM job_listings
+  GROUP BY 
+    company_id, 
+    title, 
+    description) AS jobs_grouped
+WHERE job_count > 1;
